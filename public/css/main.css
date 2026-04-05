@@ -1,0 +1,303 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+
+/* ── Design Tokens ─────────────────────────────────────── */
+:root {
+  --grad-1: #7c3aed;
+  --grad-2: #ec4899;
+  --grad-3: #f97316;
+  --bg-body: #0d0d1a;
+  --bg-card: rgba(255, 255, 255, 0.05);
+  --bg-card-hover: rgba(255, 255, 255, 0.09);
+  --text-primary: #f8fafc;
+  --text-muted: #94a3b8;
+  --border: rgba(255, 255, 255, 0.08);
+  --radius: 16px;
+}
+
+/* ── Reset ─────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* ── Base ──────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--bg-body);
+  color: var(--text-primary);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Animated gradient mesh background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 10% 20%, rgba(124, 58, 237, 0.35) 0%, transparent 55%),
+    radial-gradient(ellipse at 90% 10%, rgba(236, 72, 153, 0.3) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 90%, rgba(249, 115, 22, 0.25) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 70%, rgba(124, 58, 237, 0.2) 0%, transparent 45%);
+  z-index: -1;
+  animation: bgShift 12s ease-in-out infinite alternate;
+}
+
+@keyframes bgShift {
+  0% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+/* ── Navbar ──────────────────────────────────────────────── */
+.navbar {
+  background: rgba(13, 13, 26, 0.75) !important;
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 2rem;
+}
+
+.navbar-brand {
+  font-size: 1.6rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #a78bfa, #f472b6, #fb923c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+}
+
+.navbar-nav .nav-link {
+  color: var(--text-muted) !important;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: #a78bfa !important;
+}
+
+/* ── Add Note button in nav ─────────────────────────────── */
+.navbar .btn-primary,
+.btn-primary {
+  background: linear-gradient(135deg, var(--grad-1), var(--grad-2)) !important;
+  border: none !important;
+  font-weight: 600;
+  border-radius: 50px !important;
+  padding: 0.5rem 1.4rem;
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  color: #fff !important;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(236, 72, 153, 0.5) !important;
+}
+
+/* ── Page heading ───────────────────────────────────────── */
+main>.container {
+  padding: 90px 15px 40px;
+}
+
+main h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #a78bfa, #f472b6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+main h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 1.5rem 0 1rem;
+}
+
+main h3 {
+  color: var(--text-muted);
+  font-weight: 400;
+  font-size: 1.1rem;
+}
+
+main .lead {
+  color: var(--text-muted);
+}
+
+main hr {
+  border-color: var(--border);
+  margin: 1.5rem 0;
+}
+
+/* ── Flash messages ─────────────────────────────────────── */
+.flash-success {
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #4ade80;
+  border-radius: var(--radius);
+  padding: 0.8rem 1.2rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.flash-error {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+  border-radius: var(--radius);
+  padding: 0.8rem 1.2rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+/* ── Note Cards ─────────────────────────────────────────── */
+.bg-body-secondary {
+  background: var(--bg-card) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  text-align: left;
+}
+
+.bg-body-secondary:hover {
+  transform: translateY(-4px);
+  background: var(--bg-card-hover) !important;
+  border-color: rgba(167, 139, 250, 0.4) !important;
+  box-shadow: 0 12px 40px rgba(124, 58, 237, 0.2);
+}
+
+/* Note ID badge */
+.bg-body-secondary h1.display-4 {
+  font-size: 0.8rem !important;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #a78bfa !important;
+  background: rgba(167, 139, 250, 0.1);
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  margin-bottom: 0.8rem;
+  font-style: normal !important;
+  -webkit-text-fill-color: #a78bfa;
+}
+
+.bg-body-secondary .lead {
+  font-size: 1.05rem !important;
+  color: var(--text-primary) !important;
+  line-height: 1.6;
+}
+
+/* ── Delete Button ──────────────────────────────────────── */
+.btn-danger {
+  background: rgba(239, 68, 68, 0.15) !important;
+  border: 1px solid rgba(239, 68, 68, 0.3) !important;
+  color: #f87171 !important;
+  border-radius: 50px !important;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.4rem 1rem;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.btn-danger:hover {
+  background: rgba(239, 68, 68, 0.3) !important;
+  transform: translateY(-1px);
+}
+
+/* ── Empty State ─────────────────────────────────────────── */
+.empty-state-box {
+  text-align: center;
+  padding: 4rem 2rem;
+  border: 1px dashed rgba(167, 139, 250, 0.35);
+  border-radius: var(--radius);
+  background: rgba(124, 58, 237, 0.06);
+}
+
+.empty-state-box h1 {
+  font-size: 1.4rem !important;
+  -webkit-text-fill-color: var(--text-primary) !important;
+  margin-bottom: 0.5rem;
+}
+
+.empty-state-box p {
+  color: var(--text-muted);
+}
+
+/* ── New Note Form ───────────────────────────────────────── */
+.form-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+}
+
+.form-control {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 12px !important;
+  color: var(--text-primary) !important;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  resize: vertical;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control:focus {
+  outline: none !important;
+  border-color: #a78bfa !important;
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.2) !important;
+  background: rgba(255, 255, 255, 0.07) !important;
+}
+
+.form-control::placeholder {
+  color: var(--text-muted);
+}
+
+.btn-block.btn-primary {
+  margin-top: 1rem;
+  border-radius: 12px !important;
+  padding: 0.8rem !important;
+  font-size: 1rem;
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+footer {
+  background: rgba(13, 13, 26, 0.6) !important;
+  border-top: 1px solid var(--border);
+  padding: 1.2rem 2rem;
+  text-align: center;
+}
+
+footer .text-body-secondary {
+  color: var(--text-muted) !important;
+  font-size: 0.9rem;
+}
+
+/* ── Bootstrap overrides ─────────────────────────────────── */
+.text-body-emphasis {
+  color: var(--text-primary) !important;
+}
+
+.navbar-toggler {
+  border-color: var(--border) !important;
+}
